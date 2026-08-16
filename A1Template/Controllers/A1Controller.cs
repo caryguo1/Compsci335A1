@@ -113,7 +113,7 @@ namespace A1Template.Controllers
             Comment? comment = _repository.GetCommentById(id);
             if (comment == null)
             {
-                return NotFound($"Comment {id} does not exist.");
+                return BadRequest($"Comment {id} does not exist.");
             } 
             else
             {

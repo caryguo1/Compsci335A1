@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/Cary/Desktop/A1Template/A1.csproj": {}
+    "/Users/Cary/Desktop/Compsci335A1/A1Template/A1.csproj": {}
   },
   "projects": {
-    "/Users/Cary/Desktop/A1Template/A1.csproj": {
+    "/Users/Cary/Desktop/Compsci335A1/A1Template/A1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Cary/Desktop/A1Template/A1.csproj",
+        "projectUniqueName": "/Users/Cary/Desktop/Compsci335A1/A1Template/A1.csproj",
         "projectName": "A1",
-        "projectPath": "/Users/Cary/Desktop/A1Template/A1.csproj",
+        "projectPath": "/Users/Cary/Desktop/Compsci335A1/A1Template/A1.csproj",
         "packagesPath": "/Users/Cary/.nuget/packages/",
-        "outputPath": "/Users/Cary/Desktop/A1Template/obj/",
+        "outputPath": "/Users/Cary/Desktop/Compsci335A1/A1Template/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/Cary/.nuget/NuGet/NuGet.Config"
