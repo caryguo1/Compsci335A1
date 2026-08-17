@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using A1Template.Models;
 
@@ -24,7 +24,7 @@ namespace A1Template.Data
 
         public IEnumerable<Sign> GetSigns(string search_term)
         {
-            IEnumerable<Sign> selected_signs = _dbContext.Signs.Where(s => s.Description.Contains(search_term)).ToList<Sign>(); 
+            IEnumerable<Sign> selected_signs = _dbContext.Signs.Where(s => s.Description.ToLower().Contains(search_term)).ToList<Sign>(); 
             return selected_signs;
         }
         

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using A1Template.Models;
-using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Http;
 
 namespace A1Template.Data
 {
@@ -43,9 +43,5 @@ namespace A1Template.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Sign> Signs { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlite("Data Source=MyDatabase.sqlite");
-        //}
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using A1Template.Models;
 using A1Template.Data;
 using A1Template.Dtos;
-using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace A1Template.Controllers
@@ -59,17 +59,17 @@ namespace A1Template.Controllers
             return Ok(signs);
         }
 
-        [HttpGet("Signs/{search_term}")]
-        public ActionResult GetSigns(string search_term)
+        [HttpGet("Signs/{term}")]
+        public ActionResult GetSigns(string term)
         {
-            IEnumerable<Sign> selected_signs = _repository.GetSigns(search_term);
+            IEnumerable<Sign> selected_signs = _repository.GetSigns(term.ToLower());
             return Ok(selected_signs);
         }
 
-        [HttpGet("SignImage/{sign_name}")]
-        public ActionResult GetSignImage(string sign_name)
+        [HttpGet("SignImage/{id}")]
+        public ActionResult GetSignImage(string id)
         {
-
+            string sign_name = id;
             // !!!!! maybe implement GetFileName() here (strips the path from a user entered name)
 
             //string image_name = "Logo";
@@ -126,85 +126,18 @@ namespace A1Template.Controllers
         {
             Comment new_comment = new Comment {UserComment = input_comment.UserComment, Name = input_comment.Name};
             Comment addedComment = _repository.AddComment(new_comment);
-            return CreatedAtAction(nameof(WriteComment), new {id = addedComment.Id}, addedComment);
+            return CreatedAtAction(nameof(GetComment), new {id = addedComment.Id}, addedComment);
         }
 
-        [HttpGet("Comments/{number_of_comments_input?}")]
-        public ActionResult Comments(int? number_of_comments_input = 5)
+        [HttpGet("Comments/{num?}")]
+        public ActionResult Comments(int? num = 5)
         {
-            int number_of_comments = number_of_comments_input ?? 5;
+            int number_of_comments = num ?? 5;
 
             IEnumerable<Comment> selected_comments =
                 _repository.GetFirstNComments(number_of_comments);
 
             return Ok(selected_comments);
         }
-
-
-
-        /*
-        // GET /webapi/GetCustomers
-        [HttpGet("GetCustomers")]
-        public ActionResult<IEnumerable<CustomerOutDto>> GetCustomers()
-        {
-            IEnumerable<Customer> customers = _repository.GetAllCustomers();
-            IEnumerable<CustomerOutDto> c = customers.Select(e => new CustomerOutDto { Id = e.Id, FirstName = e.FirstName, LastName = e.LastName });
-            return Ok(c);
-        }
-
-        // GET /webapi/GetCustomer/{id}
-        [HttpGet("GetCustomer/{id}")]
-        public ActionResult<CustomerOutDto> GetCustomer(int id)
-        {
-            Customer customer = _repository.GetCustomerByID(id);
-            if (customer == null)
-                return NotFound();
-            else {
-                CustomerOutDto c = new CustomerOutDto { Id = customer.Id, FirstName = customer.FirstName, LastName = customer.LastName };
-                return Ok(c);
-            }
-                
-        }
-
-        [HttpPost("AddCustomer")]
-        public ActionResult<CustomerOutDto> AddCustomer(CustomerInputDto customer)
-        {
-            Customer c = new Customer { FirstName = customer.FirstName, LastName = customer.LastName, Email = customer.Email };
-            Customer addedCustomer = _repository.AddCustomer(c);
-            CustomerOutDto co = new CustomerOutDto { Id = addedCustomer.Id, FirstName = addedCustomer.FirstName, LastName = addedCustomer.LastName };
-            return CreatedAtAction(nameof(GetCustomer), new { id = co.Id }, co);
-        }
-        */
-
-        //// PUT /webapi/UpdateCustomer/{id}
-        //[HttpPut("UpdateCustomer/{id}")]
-        //public ActionResult UpdateCustomer(int id, CustomerInputDto customer)
-        //{
-        //    Customer c = _repository.GetCustomerByID(id);
-        //    if (c == null)
-        //        return NotFound();
-        //    else
-        //    {
-        //        c.FirstName = customer.FirstName;
-        //        c.LastName = customer.LastName;
-        //        c.Email = customer.Email;
-        //        _repository.SaveChanges();
-        //        return NoContent();
-        //    }
-        //}
-
-        //// DELETE /webapi/DeleteCustomer/{id}
-        //[HttpDelete("DeleteCustomer/{id}")]
-        //public ActionResult DeleteCustomer(int id)
-        //{
-        //    Customer c = _repository.GetCustomerByID(id);
-        //    if (c == null)
-        //        return NotFound();
-        //    else
-        //    {
-        //        _repository.DeleteCustomer(id);
-        //        return NoContent();
-        //    }
-        //}
     }
 }

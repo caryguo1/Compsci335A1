@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using A1Template.Models;
 
 namespace A1Template.Data
@@ -15,13 +15,6 @@ namespace A1Template.Data
         Comment AddComment(Comment comment);
         IEnumerable<Comment> GetFirstNComments(int num_of_comments);
         
-
-
-        //IEnumerable<Customer> GetAllCustomers();
-        //Customer GetCustomerByID(int id);
-        //Customer AddCustomer(Customer customer);
-        //void DeleteCustomer(int id);
-        //void SaveChanges();
     }
 }
 
