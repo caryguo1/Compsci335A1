@@ -10,18 +10,21 @@ namespace A1Template.Data
 {
     public class A1DbContext : DbContext
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly IHttpContextAccessor _httpContextAccessor;
 
+        //public A1DbContext(DbContextOptions<A1DbContext> options, IHttpContextAccessor httpContextAccessor)
+        /*
         public A1DbContext(DbContextOptions<A1DbContext> options, IHttpContextAccessor httpContextAccessor)
             : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
         }
+        */
         public A1DbContext(DbContextOptions<A1DbContext> options) : base(options) {}
         public override int SaveChanges()
         {
-            var httpContext = _httpContextAccessor.HttpContext;
-            string? clientIp = httpContext?.Connection?.RemoteIpAddress?.ToString();
+            //var httpContext = _httpContextAccessor.HttpContext;
+            //string? clientIp = httpContext?.Connection?.RemoteIpAddress?.ToString();
 
             var addedEntries = ChangeTracker.Entries()
                 .Where(e => e.State == EntityState.Added && e.Entity is Comment);
@@ -33,7 +36,7 @@ namespace A1Template.Data
                 if (comment != null)
                 {
                     comment.Time = DateTime.UtcNow.ToString("yyyyMMddTHHmmssZ");
-                    comment.IP = clientIp ?? "Unknown";
+                    //comment.IP = clientIp ?? "Unknown";
                 }
             }
 

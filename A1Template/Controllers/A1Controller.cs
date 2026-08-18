@@ -124,7 +124,8 @@ namespace A1Template.Controllers
         [HttpPost("WriteComment")]
         public ActionResult WriteComment(CommentInputDto input_comment)
         {
-            Comment new_comment = new Comment {UserComment = input_comment.UserComment, Name = input_comment.Name};
+            string IPAddress = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
+            Comment new_comment = new Comment {UserComment = input_comment.UserComment, Name = input_comment.Name, IP = IPAddress};
             Comment addedComment = _repository.AddComment(new_comment);
             return CreatedAtAction(nameof(GetComment), new {id = addedComment.Id}, addedComment);
         }
