@@ -21,15 +21,17 @@ public class Program
         });
 
         // Makes sure the program accesses the db in the project folder instead of the executable forlder
+        /*
         string executableFolder = AppContext.BaseDirectory;
         string projectFolder = Path.GetFullPath(Path.Combine(executableFolder, "..", "..", ".."));
         string dbPath = Path.Combine(projectFolder, "A1Database.sqlite");
         string connectionString = $"Data Source={dbPath}";
         builder.Services.AddDbContext<A1DbContext>(options =>
             options.UseSqlite(connectionString));
+        */
 
 
-        //builder.Services.AddDbContext<A1DbContext>(options => options.UseSqlite(builder.Configuration["WebAPIConnection"]));
+        builder.Services.AddDbContext<A1DbContext>(options => options.UseSqlite(builder.Configuration["P1DBConnection"]));
 
         builder.Services.AddScoped<IA1Repo, A1Repo>();
 
